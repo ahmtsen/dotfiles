@@ -1,0 +1,23 @@
+- name: Install dotfiles
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Get list of roles
+      ansible.builtin.find:
+        paths: "{{ playbook_dir }}/roles"
+        file_type: directory
+        recurse: false
+      register: roles_dirs
+
+    - name: Extract role names
+      ansible.builtin.set_fact:
+        run_roles: "{{ roles_dirs.files | map(attribute='path') | map('basename') | list }}"
+
+    - name: Display roles
+      ansible.builtin.debug:
+        var: run_roles
+
+    - name: Run roles
+      ansible.builtin.include_role:
+        name: "{{ item }}"
+      with_items: "{{ run_roles }}"

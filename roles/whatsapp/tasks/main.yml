@@ -1,0 +1,6 @@
+- name: Install and configure whatsapp
+  block:
+    - name: Install whatsapp with homebrew
+      community.general.homebrew:
+        name: whatsapp
+        state: present

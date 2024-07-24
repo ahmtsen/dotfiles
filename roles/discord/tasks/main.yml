@@ -1,0 +1,6 @@
+- name: Install and configure discord
+  block:
+    - name: Install discord with homebrew
+      community.general.homebrew:
+        name: discord
+        state: present

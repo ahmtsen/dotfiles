@@ -1,0 +1,6 @@
+- name: Install and configure fastfetch
+  block:
+    - name: Install fastfetch with homebrew
+      community.general.homebrew:
+        name: fastfetch
+        state: present

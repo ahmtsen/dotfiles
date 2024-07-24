@@ -1,0 +1,19 @@
+import = ["~/.config/alacritty/catppuccin-mocha.toml"]
+
+live_config_reload = true
+
+
+[window]
+padding.x = 4
+padding.y = 4
+decorations = "buttonless"
+opacity = 0.9
+
+[font]
+normal.family = "AnonymicePro Nerd Font Mono"
+normal.style = "Bold"
+size = 16.0
+offset.x = 0
+offset.y = 0
+glyph_offset.x = 0
+glyph_offset.y = 0

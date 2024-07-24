@@ -1,0 +1,6 @@
+- name: Install and configure dotnet
+  block:
+    - name: Install dotnet with homebrew
+      community.general.homebrew:
+        name: homebrew/cask/dotnet-sdk
+        state: present

@@ -1,0 +1,6 @@
+- name: Install and configure yazi
+  block:
+    - name: Install yazi with homebrew
+      community.general.homebrew:
+        name: yazi
+        state: present

@@ -1,0 +1,6 @@
+- name: Install and configure lsd
+  block:
+    - name: Install lsd with homebrew
+      community.general.homebrew:
+        name: lsd
+        state: present

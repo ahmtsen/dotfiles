@@ -1,0 +1,11 @@
+- name: Install and configure lua
+  block:
+    - name: Install lua with homebrew
+      community.general.homebrew:
+        name: lua
+        state: present
+
+    - name: Install luarocks with homebrew
+      community.general.homebrew:
+        name: luarocks
+        state: present

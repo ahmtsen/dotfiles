@@ -1,0 +1,6 @@
+- name: Install and configure zoxide
+  block:
+    - name: Install zoxide with homebrew
+      community.general.homebrew:
+        name: zoxide
+        state: present

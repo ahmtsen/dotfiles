@@ -1,0 +1,29 @@
+- name: Install and configure alacritty
+  block:
+    - name: Install alacritty with homebrew
+      community.general.homebrew:
+        name: alacritty
+        state: present
+
+    - name: Create alacritty configuration directory
+      ansible.builtin.file:
+        path: ~/.config/alacritty
+        state: directory
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+        mode: '0755'
+
+    - name: Create alacritty configuration file symlink
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/alacritty.toml"
+        dest: ~/.config/alacritty/alacritty.toml
+        state: link
+        force: true
+
+    - name: Install catppuccin alacritty theme
+      ansible.builtin.get_url:
+        url: https://github.com/catppuccin/alacritty/raw/main/catppuccin-mocha.toml
+        dest: ~/.config/alacritty/catppuccin-mocha.toml
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+        mode: '0644'

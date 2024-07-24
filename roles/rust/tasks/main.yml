@@ -1,0 +1,12 @@
+- name: Install and configure rust
+  block:
+    - name: Install rustup-init with homebrew
+      community.general.homebrew:
+        name: rustup-init
+        state: present
+
+    - name: Run rustup-init
+      ansible.builtin.shell: >
+        rustup-init -y
+      args:
+        creates: "{{ ansible_env.HOME }}/.cargo/bin/rustup"

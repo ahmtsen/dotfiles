@@ -1,0 +1,16 @@
+- name: Install fonts
+  block:
+    - name: Install Terminess TTF Nerd font
+      community.general.homebrew:
+        name: font-terminess-ttf-nerd-font
+        state: present
+
+    - name: Install Anonymice Nerd Font
+      community.general.homebrew:
+        name: font-anonymice-nerd-font
+        state: present
+
+    - name: Install Monaspace Nerd Font
+      community.general.homebrew:
+        name: font-monaspace-nerd-font
+        state: present

@@ -1,0 +1,12 @@
+- name: Install and configure starship
+  block:
+    - name: Install starship with homebrew
+      community.general.homebrew:
+        name: starship
+        state: present
+    - name: Create starship config file symlink
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/starship.toml"
+        dest: "{{ ansible_env.HOME }}/.config/starship.toml"
+        state: link
+        force: true

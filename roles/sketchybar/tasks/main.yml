@@ -1,0 +1,67 @@
+- name: Install and configure sketchybar
+  block:
+    - name: Tap FelixKratz/formulae
+      ansible.builtin.command: brew tap FelixKratz/formulae
+
+    - name: Install sketchybar with homebrew
+      community.general.homebrew:
+        name: FelixKratz/formulae/sketchybar
+        state: present
+
+    - name: Install switchaudio-osx with homebrew
+      community.general.homebrew:
+        name: switchaudio-osx
+        state: present
+
+    - name: Install nowplaying-cli
+      community.general.homebrew:
+        name: nowplaying-cli
+        state: present
+
+    - name: Install sf-symbols
+      community.general.homebrew:
+        name: sf-symbols
+        state: present
+
+    - name: Install sketchybar app font
+      ansible.builtin.get_url:
+        url: https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v2.0.5/sketchybar-app-font.ttf
+        dest: ~/Library/Fonts/sketchybar-app-font.ttf
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+        mode: "0644"
+
+    - name: Install sketchybar lua library
+      block:
+        - name: Check if SBarLua is already installed
+          ansible.builtin.stat:
+            path: ~/.local/share/sketchybar_lua
+          register: sbarlua_installed
+
+        - name: Clone SBarLua
+          ansible.builtin.git:
+            repo: https://github.com/FelixKratz/SbarLua.git
+            dest: /tmp/SbarLua
+            version: main
+          when: not sbarlua_installed.stat.exists
+
+        - name: Install SBarLua
+          ansible.builtin.command: make install
+          args:
+            chdir: /tmp/SbarLua
+          when: not sbarlua_installed.stat.exists
+
+    - name: Create sketchybar config directory symlink
+      block:
+        - name: Ensure sketchybar config directory exists
+          ansible.builtin.file:
+            path: "{{ ansible_env.HOME }}/.config/sketchybar"
+            state: directory
+            mode: "0755"
+
+        - name: Create symlink to sketchybar configuration directory
+          ansible.builtin.file:
+            src: "{{ role_path }}/files"
+            dest: "{{ ansible_env.HOME }}/.config/sketchybar"
+            state: link
+            force: true

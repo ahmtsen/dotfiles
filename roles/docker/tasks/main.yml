@@ -1,0 +1,11 @@
+- name: Install and configure docker
+  block:
+    - name: Install docker with homebrew
+      community.general.homebrew:
+        name: homebrew/cask/docker
+        state: present
+
+    - name: Install lazydocker with homebrew
+      community.general.homebrew:
+        name: lazydocker
+        state: present

@@ -1,0 +1,67 @@
+- name: Install and configure yabai
+  block:
+    - name: Tap koekeishiya/formulae
+      ansible.builtin.command: brew tap koekeishiya/formulae
+
+    - name: Install yabai with homebrew
+      community.general.homebrew:
+        name: koekeishiya/formulae/yabai
+        state: present
+      notify: "Run 'yabai --start-service' also configure script addition"
+
+    - name: Install skhd with homebrew
+      community.general.homebrew:
+        name: koekeishiya/formulae/skhd
+        state: present
+      notify: "Run 'skhd --start-service'"
+
+    - name: Create yabai configuration directory
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config/yabai"
+        state: directory
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+        mode: "0755"
+
+    - name: Create skhd configuration directory
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config/skhd"
+        state: directory
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+        mode: "0755"
+
+    - name: Create yabai config file symlink
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/yabairc"
+        dest: "{{ ansible_env.HOME }}/.config/yabai/yabairc"
+        state: link
+        force: true
+
+    - name: Create skhd config file symlink
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/skhdrc"
+        dest: "{{ ansible_env.HOME }}/.config/skhd/skhdrc"
+        state: link
+        force: true
+
+    - name: Each display has its own space
+      community.general.osx_defaults:
+        domain: com.apple.spaces
+        key: spans-displays
+        type: bool
+        value: false
+
+    - name: Auto hide dock
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: autohide
+        type: bool
+        value: true
+
+    - name: Hide menu bar
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: _HIHideMenuBar
+        type: bool
+        value: true

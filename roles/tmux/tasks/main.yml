@@ -1,0 +1,32 @@
+- name: Install and configure tmux
+  block:
+    - name: Install tmux with homebrew
+      community.general.homebrew:
+        name: tmux
+        state: present
+
+    - name: Ensure tmux configuration directory exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config/tmux"
+        state: directory
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+        mode: "0755"
+
+    - name: Create symlink for tmux configuration
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/tmux.conf"
+        dest: "{{ ansible_env.HOME }}/.config/tmux/tmux.conf"
+        state: link
+        force: true
+
+    - name: Install tmux plugin manager
+      ansible.builtin.git:
+        repo: https://github.com/tmux-plugins/tpm
+        dest: ~/.tmux/plugins/tpm
+        version: master
+
+    - name: Install yq with homebrew
+      community.general.homebrew:
+        name: yq
+        state: present

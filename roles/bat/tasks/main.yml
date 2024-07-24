@@ -1,0 +1,27 @@
+- name: Install and configure bat
+  block:
+    - name: Install bat with homebrew
+      community.general.homebrew:
+        name: bat
+        state: present
+
+    - name: Create bat themes directory
+      ansible.builtin.file:
+        path: ~/.config/bat/themes
+        state: directory
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+        mode: '0755'
+
+    - name: Install catppuccin bat theme
+      ansible.builtin.get_url:
+        url: https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+        dest: ~/.config/bat/themes/catppuccin-mocha.tmTheme
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+        mode: '0644'
+
+    - name: Rebuild bat theme cache
+      ansible.builtin.command:
+        cmd: bat cache --build
+      changed_when: false

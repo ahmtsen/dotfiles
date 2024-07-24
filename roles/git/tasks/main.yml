@@ -1,0 +1,48 @@
+- name: Install and configure git
+  block:
+    - name: Install git with homebrew
+      community.general.homebrew:
+        name: git
+        state: present
+
+    - name: Create gitconfig symlink
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/.gitconfig"
+        dest: ~/.gitconfig
+        state: link
+        force: true
+
+    - name: Install github-cli with homebrew
+      community.general.homebrew:
+        name: gh
+        state: present
+
+    - name: Install lazygit with homebrew
+      community.general.homebrew:
+        name: lazygit
+        state: present
+
+    - name: Ensure lazygit config directory exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config/lazygit"
+        state: directory
+        mode: '0755'
+
+    - name: Install git-delta with homebrew
+      community.general.homebrew:
+        name: git-delta
+        state: present
+
+    - name: Ensure delta config directory exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config/delta"
+        state: directory
+        mode: '0755'
+
+    - name: Install catppuccin delta theme
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/catppuccin/delta/main/catppuccin.gitconfig
+        dest: "{{ ansible_env.HOME }}/.config/delta/catppuccin.gitconfig"
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+        mode: '0644'

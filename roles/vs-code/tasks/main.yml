@@ -1,0 +1,6 @@
+- name: Install and configure vs-code
+  block:
+    - name: Install vs-code with homebrew
+      community.general.homebrew:
+        name: visual-studio-code
+        state: present

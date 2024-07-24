@@ -1,0 +1,39 @@
+- name: Install and configure neovim
+  block:
+    - name: Install neovim with homebrew
+      community.general.homebrew:
+        name: neovim
+        state: present
+
+    - name: Create neovim configuration directory
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config/nvim"
+        state: directory
+        mode: '0755'
+
+    - name: Create symlink to neovim configuration directory
+      ansible.builtin.file:
+        src: "{{ role_path }}/files"
+        dest: "{{ ansible_env.HOME }}/.config/nvim"
+        state: link
+        force: true
+
+    - name: Install tree-sitter cli with homebrew
+      community.general.homebrew:
+        name: tree-sitter
+        state: present
+
+    - name: Install ripgrep for telescope with homebrew
+      community.general.homebrew:
+        name: ripgrep
+        state: present
+
+    - name: Install jq for rest.nvim with homebrew
+      community.general.homebrew:
+        name: jq
+        state: present
+
+    - name: Install tidy-html5 for rest.nvim with homebrew
+      community.general.homebrew:
+        name: tidy-html5
+        state: present

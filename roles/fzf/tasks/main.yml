@@ -1,0 +1,6 @@
+- name: Install and configure fzf
+  block:
+    - name: Install fzf with homebrew
+      community.general.homebrew:
+        name: fzf
+        state: present

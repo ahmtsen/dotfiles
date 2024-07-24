@@ -1,0 +1,6 @@
+- name: Install and configure golang
+  block:
+    - name: Install golang with homebrew
+      community.general.homebrew:
+        name: go
+        state: present

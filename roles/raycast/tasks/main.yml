@@ -1,0 +1,6 @@
+- name: Install and configure raycast
+  block:
+    - name: Install raycast with homebrew
+      community.general.homebrew:
+        name: raycast
+        state: present

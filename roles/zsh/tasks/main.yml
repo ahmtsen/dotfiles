@@ -1,0 +1,63 @@
+- name: Install and configure zsh
+  vars:
+    shell: "/opt/homebrew/bin/zsh"
+  block:
+    - name: Install zsh with homebrew
+      community.general.homebrew:
+        name: zsh
+        state: present
+
+    - name: Ensure homebrew zsh is listed in /etc/shells
+      ansible.builtin.lineinfile:
+        path: /etc/shells
+        line: "{{ shell }}"
+        state: present
+      become: true
+
+    - name: Change default shell to homebrew zsh
+      ansible.builtin.user:
+        name: "{{ ansible_user_id }}"
+        shell: "{{ shell }}"
+      become: true
+
+    - name: Install antigen plugin manager for zsh
+      community.general.homebrew:
+        name: antigen
+        state: present
+
+    - name: Create antigen themes directory
+      ansible.builtin.file:
+        path: ~/.antigen/themes
+        state: directory
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+        mode: "0755"
+
+    - name: Install catppuccin zsh syntax highlighting theme
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/catppuccin/zsh-syntax-highlighting/main/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
+        dest: ~/.antigen/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+        mode: "0644"
+
+    - name: Create .zprofile symlink
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/.zprofile"
+        dest: "{{ ansible_env.HOME }}/.zprofile"
+        state: link
+        force: true
+
+    - name: Create .zshrc symlink
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/.zshrc"
+        dest: "{{ ansible_env.HOME }}/.zshrc"
+        state: link
+        force: true
+
+    - name: Create .zshenv symlink
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/.zshenv"
+        dest: "{{ ansible_env.HOME }}/.zshenv"
+        state: link
+        force: true

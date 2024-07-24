@@ -1,0 +1,11 @@
+- name: Install and configure httpie
+  block:
+    - name: Install httpie with homebrew
+      community.general.homebrew:
+        name: homebrew/cask/httpie
+        state: present
+
+    - name: Install httpie-cli with homebrew
+      community.general.homebrew:
+        name: httpie
+        state: present
