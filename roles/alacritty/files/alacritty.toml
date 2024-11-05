@@ -2,12 +2,14 @@ import = ["~/.config/alacritty/catppuccin-mocha.toml"]
 
 live_config_reload = true
 
+[env]
+time = "screen-256color"
 
 [window]
 padding.x = 4
 padding.y = 4
 decorations = "buttonless"
-opacity = 0.9
+opacity = 1.0
 
 [font]
 normal.family = "AnonymicePro Nerd Font Mono"

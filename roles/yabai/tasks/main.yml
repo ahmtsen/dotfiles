@@ -7,13 +7,11 @@
       community.general.homebrew:
         name: koekeishiya/formulae/yabai
         state: present
-      notify: "Run 'yabai --start-service' also configure script addition"
 
     - name: Install skhd with homebrew
       community.general.homebrew:
         name: koekeishiya/formulae/skhd
         state: present
-      notify: "Run 'skhd --start-service'"
 
     - name: Create yabai configuration directory
       ansible.builtin.file:
@@ -56,12 +54,5 @@
       community.general.osx_defaults:
         domain: com.apple.dock
         key: autohide
-        type: bool
-        value: true
-
-    - name: Hide menu bar
-      community.general.osx_defaults:
-        domain: NSGlobalDomain
-        key: _HIHideMenuBar
         type: bool
         value: true

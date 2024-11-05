@@ -6,52 +6,53 @@
 return {
   "AstroNvim/astrocommunity",
   -- color
-  { import = "astrocommunity.color.mini-hipatterns"},
-  { import = "astrocommunity.color.twilight-nvim"},
+  { import = "astrocommunity.color.mini-hipatterns" },
+  { import = "astrocommunity.color.twilight-nvim" },
   -- colorscheme
-  { import = "astrocommunity.colorscheme.catppuccin"},
+  { import = "astrocommunity.colorscheme.catppuccin" },
+  { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   -- completion
-  { import = "astrocommunity.completion.cmp-calc"},
-  { import = "astrocommunity.completion.cmp-cmdline"},
-  { import = "astrocommunity.completion.cmp-emoji"},
-  { import = "astrocommunity.completion.cmp-latex-symbols"},
-  { import = "astrocommunity.completion.cmp-nerdfont"},
-  { import = "astrocommunity.completion.cmp-nvim-lua"},
-  { import = "astrocommunity.completion.cmp-spell"},
-  { import = "astrocommunity.completion.cmp-tmux"},
-  { import = "astrocommunity.completion.copilot-cmp"},
+  { import = "astrocommunity.completion.cmp-calc" },
+  { import = "astrocommunity.completion.cmp-cmdline" },
+  { import = "astrocommunity.completion.cmp-emoji" },
+  { import = "astrocommunity.completion.cmp-latex-symbols" },
+  { import = "astrocommunity.completion.cmp-nerdfont" },
+  { import = "astrocommunity.completion.cmp-nvim-lua" },
+  { import = "astrocommunity.completion.cmp-spell" },
+  { import = "astrocommunity.completion.cmp-tmux" },
+  { import = "astrocommunity.completion.copilot-cmp" },
   -- debuging
-  { import = "astrocommunity.debugging.nvim-dap-repl-highlights"},
-  { import = "astrocommunity.debugging.nvim-dap-virtual-text"},
-  { import = "astrocommunity.debugging.telescope-dap-nvim"},
+  { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
+  { import = "astrocommunity.debugging.nvim-dap-virtual-text" },
+  { import = "astrocommunity.debugging.telescope-dap-nvim" },
   -- diagnostics
-  { import = "astrocommunity.diagnostics.trouble-nvim"},
+  { import = "astrocommunity.diagnostics.trouble-nvim" },
   -- editing support
-  { import = "astrocommunity.editing-support.cloak-nvim"},
-  { import = "astrocommunity.editing-support.neogen"},
-  { import = "astrocommunity.editing-support.refactoring-nvim"},
+  { import = "astrocommunity.editing-support.cloak-nvim" },
+  { import = "astrocommunity.editing-support.neogen" },
+  { import = "astrocommunity.editing-support.refactoring-nvim" },
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.editing-support.undotree" },
   -- game
-  { import = "astrocommunity.game.leetcode-nvim"}, 
+  { import = "astrocommunity.game.leetcode-nvim" },
   -- git
-  { import = "astrocommunity.git.git-blame-nvim"},
+  { import = "astrocommunity.git.git-blame-nvim" },
   -- icon
-  { import = "astrocommunity.icon.mini-icons"},
+  -- { import = "astrocommunity.icon.mini-icons" },
   -- indent
-  { import = "astrocommunity.indent.indent-blankline-nvim"},
-  { import = "astrocommunity.indent.mini-indentscope"},
+  { import = "astrocommunity.indent.indent-blankline-nvim" },
+  { import = "astrocommunity.indent.mini-indentscope" },
   -- motion
-  { import = "astrocommunity.motion.flash-nvim"},
+  { import = "astrocommunity.motion.flash-nvim" },
   -- neovim lua development
-  { import = "astrocommunity.neovim-lua-development.lazydev-nvim"},
+  { import = "astrocommunity.neovim-lua-development.lazydev-nvim" },
   -- pack
   { import = "astrocommunity.pack.angular" },
   { import = "astrocommunity.pack.ansible" },
   { import = "astrocommunity.pack.astro" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.cpp" },
-  { import = "astrocommunity.pack.cs" },
+  -- { import = "astrocommunity.pack.cs" },
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.full-dadbod" },
   { import = "astrocommunity.pack.go" },
@@ -84,8 +85,8 @@ return {
   { import = "astrocommunity.search.nvim-hlslens" },
   -- terminal integration
   { import = "astrocommunity.terminal-integration.toggleterm-manager-nvim" },
-  -- test 
+  -- test
   { import = "astrocommunity.test.neotest" },
   -- utility
-  { import = "astrocommunity.utility.noice-nvim"},
+  { import = "astrocommunity.utility.noice-nvim" },
 }

@@ -26,6 +26,12 @@
         dest: ~/.tmux/plugins/tpm
         version: master
 
+    - name: Install catppuccin plugin manually
+      ansible.builtin.git:
+        repo: https://github.com/catppuccin/tmux
+        dest: ~/.config/tmux/plugins/catppuccin/tmux
+        version: main
+
     - name: Install yq with homebrew
       community.general.homebrew:
         name: yq
